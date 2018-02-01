@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 class Search extends React.Component {
@@ -17,35 +18,45 @@ class Search extends React.Component {
   };
 
   handleSubmit = (e) => {
-    this.props.search(this.state.blogName, this.state.tag);
+    if (this.state.blogName === '') {
+      alert('Blog Name is Required!');
+    } else {
+      this.props.search(this.state.blogName, this.state.tag);
+    }
     e.preventDefault();
   };
 
   render() {
     return (
-      <form className="search" onSubmit={this.handleSubmit}>
-        <label htmlFor="blogName">
-          Blog Name:
-          <input
-            className="search-blogName"
-            name="blogName"
-            onChange={this.handleChange}
-          />
-        </label>
+      <div className="search">
+        <form className="search-form" onSubmit={this.handleSubmit}>
+          <label htmlFor="blogName">
+            Blog Name:
+            <input
+              className="search-blogName"
+              name="blogName"
+              onChange={this.handleChange}
+            />
+          </label>
 
-        <label htmlFor="tag">
-          Tag:
-          <input
-            className="search-tag"
-            name="tag"
-            onChange={this.handleChange}
-          />
-        </label>
+          <label htmlFor="tag">
+            Tag:
+            <input
+              className="search-tag"
+              name="tag"
+              onChange={this.handleChange}
+            />
+          </label>
 
-        <button className="search-submit">Search</button>
-      </form>
+          <button className="search-submit">Search</button>
+        </form>
+      </div>
     );
   }
+}
+
+Search.propTypes = {
+  search: PropTypes.func.isRequired,
 }
 
 export default Search;
