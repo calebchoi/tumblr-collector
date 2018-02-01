@@ -7,15 +7,13 @@ class Search extends React.Component {
       blogName: '',
       tag: '',
     };
-
-    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(e) {
+  handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     });
-  }
+  };
 
   render() {
     return (
@@ -40,8 +38,9 @@ class Search extends React.Component {
 
         <button
           className="search-submit"
-          onSubmit={this.handleSubmit}
-        />
+        >
+          Search
+        </button>
       </form>
     );
   }
