@@ -16,11 +16,16 @@ class App extends React.Component {
     };
   }
 
-  search = () => {
-    axios.get('/search')
+  search = (blogName, tag) => {
+    axios.get('/search', {
+        params: {
+          blogName,
+          tag,
+        },
+      })
       .then(results => {
         this.setState({
-          feed: results,
+          feed: results.data,
         });
       })
       .catch(err => {
@@ -30,7 +35,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Search />
+      <Search search={this.search} />
     )
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class Search extends React.Component {
   constructor() {
@@ -15,9 +16,14 @@ class Search extends React.Component {
     });
   };
 
+  handleSubmit = (e) => {
+    this.props.search(this.state.blogName, this.state.tag);
+    e.preventDefault();
+  };
+
   render() {
     return (
-      <form className="search">
+      <form className="search" onSubmit={this.handleSubmit}>
         <label htmlFor="blogName">
           Blog Name:
           <input
@@ -36,11 +42,7 @@ class Search extends React.Component {
           />
         </label>
 
-        <button
-          className="search-submit"
-        >
-          Search
-        </button>
+        <button className="search-submit">Search</button>
       </form>
     );
   }
