@@ -2,24 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Post from './Post.jsx';
 
-const Feed = props => (
-  <div className="feed">
-    {props.feed.map(post => (
-      <Post
-        type={post.type}
-        post={post}
-        addOrRemove={props.addFavorite}
-        favorite={false}
-        id={post.id}
-        key={post.id}
-      />
-    ))}
-  </div>
-);
-
-Feed.propTypes = {
-  feed: PropTypes.arrayOf(PropTypes.object).isRequired,
-  addFavorite: PropTypes.func.isRequired,
+const Favorite = (props) => {
+  const { favorite } = props;
+  return (
+    <div className="favorite">
+      {Object.keys(favorite).map(id => (
+        <Post
+          type={favorite[id].type}
+          post={favorite[id]}
+          addOrRemove={props.removeFavorite}
+          favorite={true}
+          id={favorite[id].id}
+          key={id}
+        />
+      ))}
+    </div>
+  );
 };
 
-export default Feed;
+Favorite.propTypes = {
+  favorite: PropTypes.shape({
+    id: PropTypes.arrayOf(PropTypes.object),
+  }).isRequired,
+  removeFavorite: PropTypes.func.isRequired,
+};
+
+export default Favorite;

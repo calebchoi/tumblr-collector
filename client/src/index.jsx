@@ -42,7 +42,7 @@ class App extends React.Component {
     });
   }
 
-  removeFavorite = (id) => {
+  removeFavorite = (post, id) => {
     const { favorites } = this.state;
     const newFavorite = Object.assign({}, favorites);
     delete newFavorite[id];
