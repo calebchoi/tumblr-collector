@@ -3,69 +3,62 @@ import PropTypes from 'prop-types';
 import Text from './Text.jsx';
 import Photo from './Photo.jsx';
 import Video from './Video.jsx';
-import Link from './Link.jsx';
+import Links from './Links.jsx';
 import Quote from './Quote.jsx';
 import Chat from './Chat.jsx';
 import Answer from './Answer.jsx';
 import Audio from './Audio.jsx';
 
-class Post extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      favorite: this.props.favorite,
-      type: this.props.type,
-      post: this.props.post,
-      id: this.props.id,
-    };
-  }
+const Post = (props) => {
+  const {
+    post,
+    id,
+    addOrRemove,
+    favorite,
+    type,
+  } = props;
 
-  handleClick = () => {
-    const {post, id} = this.state;
-    this.props.addOrRemove(post, id);
-  }
+  const handleClick = () => {
+    addOrRemove(post, id);
+  };
 
-  renderContent = () => {
-    const {type, post, id} = this.state;
-
+  const renderContent = () => {
     if (type === 'text') {
-      return <Text title={post.title} body={post.body} />
+      return <Text title={post.title} body={post.body} />;
     } else if (type === 'photo') {
-      return <Photo photos={post.photos} caption={post.caption} id={id} />
+      return <Photo photos={post.photos} caption={post.caption} id={id} />;
     } else if (type === 'quote') {
-      return <Quote text={post.text} source={post.source} />
+      return <Quote text={post.text} source={post.source} />;
     } else if (type === 'link') {
-      return <Link title={post.title} url={post.url} />
+      return <Links title={post.title} url={post.url} />;
     } else if (type === 'chat') {
-      return <Chat dialogue={post.body} />
+      return <Chat dialogue={post.body} />;
     } else if (type === 'audio') {
-      return <Audio caption={post.caption} player={post.player} />
+      return <Audio caption={post.caption} player={post.player} />;
     } else if (type === 'video') {
-      return <Video caption={post.caption} player={(post.player[1]).embed_code} />
+      return <Video caption={post.caption} player={(post.player[1]).embed_code} />;
     } else if (type === 'answer') {
-      return <Answer question={post.question} answer={post.answer} />
+      return <Answer question={post.question} answer={post.answer} />;
     } else {
-      return <div>Invalid Post</div>
+      return <div>Invalid Post</div>;
     }
-  }
+  };
 
-  renderButton = () => {
-    if (this.state.favorite === false) {
-      return <button className="add-favorite" onClick={this.handleClick}>Add</button>
+  const renderButton = () => {
+    if (favorite === false) {
+      return <button className="add-favorite" onClick={handleClick}>Add</button>;
     } else {
-      return <button className="remove-favorite" onClick={this.handleClick}>Remove</button>
+      return <button className="remove-favorite" onClick={handleClick}>Remove</button>;
     }
-  }
+  };
 
-  render() {
-    return (
-      <div className="post" id={this.state.id}>
-        {this.renderContent()}
-        {this.renderButton()}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="post" id={props.id}>
+      {renderContent()}
+      {renderButton()}
+    </div>
+  );
+};
 
 Post.propTypes = {
   favorite: PropTypes.bool.isRequired,
