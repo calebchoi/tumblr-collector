@@ -6,6 +6,7 @@ const Favorite = (props) => {
   const { favorite } = props;
   return (
     <div className="favorite">
+      <h2>Favorite:</h2>
       {Object.keys(favorite).map(id => (
         <Post
           type={favorite[id].type}

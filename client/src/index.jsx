@@ -53,10 +53,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Search search={this.search} />
-        <Feed feed={this.state.feed} addFavorite={this.addFavorite} />
-        <Favorite favorite={this.state.favorites} removeFavorite={this.removeFavorite} />
+      <div className="app-container">
+        <div className="left-col">
+          <Search search={this.search} />
+          <Feed feed={this.state.feed} addFavorite={this.addFavorite} />
+        </div>
+        <div className="right-col">
+          <Favorite favorite={this.state.favorites} removeFavorite={this.removeFavorite} />
+        </div>
       </div>
     )
   }

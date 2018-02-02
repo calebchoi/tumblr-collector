@@ -30,23 +30,25 @@ class Search extends React.Component {
     return (
       <div className="search">
         <form className="search-form" onSubmit={this.handleSubmit}>
-          <label htmlFor="blogName">
-            Blog Name:
+          <div className="search-blogName">
+            <label htmlFor="blogName">
+              Blog Name:
+            </label>
             <input
-              className="search-blogName"
               name="blogName"
               onChange={this.handleChange}
             />
-          </label>
+          </div>
 
-          <label htmlFor="tag">
-            Tag:
+          <div className="search-tag">
+            <label htmlFor="tag">
+              Tag:
+            </label>
             <input
-              className="search-tag"
               name="tag"
               onChange={this.handleChange}
             />
-          </label>
+          </div>
 
           <button className="search-submit">Search</button>
         </form>
