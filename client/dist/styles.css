@@ -107,6 +107,26 @@ input {
   border: 1px solid black;
 }
 
+.quote-text {
+  font-family: "Times New Roman";
+}
+
+.quote-text:before {
+  content: open-quote;
+}
+
+.quote-text:after {
+  content: close-quote;
+}
+
+.quote-source {
+  margin-top: 30px;
+}
+
+.quote-source::before {
+  content: '-- ';
+}
+
 .add-favorite, .remove-favorite {
   position: absolute;
   top: 20px;
