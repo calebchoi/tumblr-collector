@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Search from './components/Search.jsx';
 import Feed from './components/Feed.jsx';
-// import Favorite from './components/Favorite.jsx';
+import Favorite from './components/Favorite.jsx';
 
 
 
@@ -12,7 +12,7 @@ class App extends React.Component {
     super();
     this.state = {
       feed: [],
-      favorites: [],
+      favorites: {},
     };
   }
 
@@ -33,9 +33,21 @@ class App extends React.Component {
       });
   };
 
-  addFavorite = (post) => {
+  addFavorite = (post, id) => {
+    const { favorites } = this.state;
+    const newFavorite = Object.assign({}, favorites);
+    newFavorite[id] = post;
     this.setState({
-      favorites: this.state.favorites.concat([post]),
+      favorites: newFavorite,
+    });
+  }
+
+  removeFavorite = (id) => {
+    const { favorites } = this.state;
+    const newFavorite = Object.assign({}, favorites);
+    delete newFavorite[id];
+    this.setState({
+      favorites: newFavorite,
     });
   }
 
@@ -44,6 +56,7 @@ class App extends React.Component {
       <div>
         <Search search={this.search} />
         <Feed feed={this.state.feed} addFavorite={this.addFavorite} />
+        <Favorite favorite={this.state.favorites} removeFavorite={this.removeFavorite} />
       </div>
     )
   }

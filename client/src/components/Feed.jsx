@@ -8,7 +8,9 @@ const Feed = props => (
       <Post
         type={post.type}
         post={post}
-        addFavorite={props.addFavorite}
+        addOrRemove={props.addFavorite}
+        favorite={false}
+        id={post.id}
         key={post.id}
       />
     ))}
