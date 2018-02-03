@@ -9,6 +9,11 @@ Install Dependencies:
 npm install
 ```
 
+Set Environment Variable:
+```
+export {API_KEY}
+```
+
 Start:
 ```
 npm start
