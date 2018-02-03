@@ -11,7 +11,7 @@ npm install
 
 Set Environment Variable:
 ```
-export {API_KEY}
+export API_KEY={API_KEY}
 ```
 
 Start:
